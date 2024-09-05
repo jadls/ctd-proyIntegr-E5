@@ -4,6 +4,7 @@ import { useUserContext } from "../Context/Context";
 const Perfil = () => {
   const { state, dispatch } = useUserContext();
 
+
   const navigate = useNavigate()
 
   const iniciales = (nombre) => {
@@ -13,12 +14,11 @@ const Perfil = () => {
 
   return (
     <div className="perfil">
-      <h2 className="perfilStyle">{iniciales(state.user.name)}</h2>
+      <h2 className="perfilStyle">{iniciales(state.user.nombre + ' ' + state.user.apellido)}</h2>
       <div className="infoperfil">
-        <h3>{state.user.name}</h3>
+        <h3>{state.user.nombre + ' ' + state.user.apellido}</h3>
         <h3>{state.user.email}</h3>
-        <h3>{state.user.phone}</h3>
-        <h3>{state.user.website}</h3>
+        {state.user.isAdmin && <h3>Modo admin</h3>}
       </div>
       <div>
         <Link to={"/perfil/editar"}>
